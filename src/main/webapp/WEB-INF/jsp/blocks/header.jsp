@@ -13,8 +13,8 @@
         </ul>
 
         <div class="col-md-3 text-end">
-            <a href="signin" class="btn btn-outline-primary me-2">Login</a>
-            <button type="button" class="btn btn-primary">Sign-up</button>
+            <a href="/signin" class="btn btn-outline-primary me-2">Login</a>
+            <a href="/users/new" class="btn btn-primary">Sign-up</a>
         </div>
     </header>
 </div>
