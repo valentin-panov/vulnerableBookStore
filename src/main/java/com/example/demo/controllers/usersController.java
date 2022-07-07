@@ -5,8 +5,10 @@ import com.example.demo.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -38,12 +40,17 @@ public class usersController {
     @GetMapping("/new")
     public String createUserForm(Model model) {
         model.addAttribute("title", "New user registration");
+        model.addAttribute("method", "post");
         return "userForm";
     }
 
     @PostMapping()
-    public String createUser(@ModelAttribute("user") User user) {
+    public String createUser(@ModelAttribute("user") @Valid User user, BindingResult bindingresult) {
+        if (bindingresult.hasErrors()) {
+            return "userForm";
+        }
         // save user to bd
+
         return "redirect:/users";
     }
 
@@ -58,4 +65,12 @@ public class usersController {
         }
     }
 
+    @PatchMapping("/{id}")
+    public String updateUser(@ModelAttribute("user") @Valid User user, BindingResult bindingresult) {
+        if (bindingresult.hasErrors()) {
+            return "userForm";
+        }
+        // save user to bd
+        return "redirect:/users";
+    }
 }

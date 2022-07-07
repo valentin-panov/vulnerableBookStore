@@ -14,9 +14,16 @@ CREATE TABLE books
 DROP TABLE IF EXISTS users;
 CREATE TABLE users
 (
-    id        serial PRIMARY KEY,
-    is_active BOOLEAN             NOT NULL,
-    password  VARCHAR(250)        NOT NULL,
-    roles     VARCHAR(250),
-    user_name VARCHAR(250) unique NOT NULL
+    id         serial PRIMARY KEY,
+    user_name  VARCHAR(250) unique NOT NULL,
+    password   VARCHAR(250)        NOT NULL,
+    is_active  BOOLEAN             NOT NULL,
+    roles      VARCHAR(250),
+    email      VARCHAR(250) unique,
+    first_name varchar(250),
+    last_name  varchar(250),
+    address    varchar(250),
+    country    varchar(250),
+    state      varchar(250),
+    zip        numeric(10, 0)
 )

@@ -25,12 +25,13 @@
 <section class="py-1 text-center container">
     <div class="row mb-3 align-items-center">
         <div class="col"><h2>${title}</h2></div>
-        <div class="col"><a href="/users/new" class="btn btn-primary btn-md px-4">NEW USER</a></div>
+        <div class="col"><a href="/users/new" class="btn btn-primary btn-md px-4 w-50">NEW USER</a></div>
     </div>
     <table class="container-fluid ">
         <tr>
             <td>id</td>
             <td>user name</td>
+            <td>email</td>
             <td>user roles</td>
             <td>actions</td>
         </tr>
@@ -38,6 +39,7 @@
             <tr>
                 <td class=" themed-grid-col">${user.id}</td>
                 <td class=" themed-grid-col">${user.userName}</td>
+                <td class=" themed-grid-col">${user.email}</td>
                 <td class=" themed-grid-col">${user.roles}</td>
                 <td class=" themed-grid-col">
                     <a href="/users/${user.id}/edit" class="btn btn-sm btn-outline-secondary">EDIT</a>
