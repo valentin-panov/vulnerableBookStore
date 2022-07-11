@@ -25,7 +25,6 @@
 <section class="py-1 text-center container">
     <div class="row mb-3 align-items-center">
         <div class="col"><h2>${title}</h2></div>
-        <div class="col"><a href="/admin/users/new" class="btn btn-primary btn-md px-4 w-50">NEW USER</a></div>
     </div>
     <table class="container-fluid ">
         <tr>
@@ -42,8 +41,8 @@
                 <td class=" themed-grid-col">${user.email}</td>
                 <td class=" themed-grid-col">${user.roles}</td>
                 <td class=" themed-grid-col">
-                    <a href="/admin/users/${user.id}/edit" class="btn btn-sm btn-outline-secondary">EDIT</a>
-                    <a href="/admin/users/${id}" class="btn btn-sm btn-outline-secondary">DELETE</a>
+                    <a href="/users/${user.id}/edit" class="btn btn-sm btn-outline-secondary">EDIT</a>
+                    <a href="/users/${id}" class="btn btn-sm btn-outline-secondary">DELETE</a>
                 </td>
             </tr>
         </c:forEach>

@@ -22,8 +22,5 @@ CREATE TABLE users
     email      VARCHAR(250) unique,
     first_name varchar(250),
     last_name  varchar(250),
-    address    varchar(250),
-    country    varchar(250),
-    state      varchar(250),
-    zip        numeric(10, 0)
+    address    varchar(250)
 )

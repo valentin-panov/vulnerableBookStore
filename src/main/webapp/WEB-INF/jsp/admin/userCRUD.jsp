@@ -1,16 +1,23 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: VPanov
-  Date: 7/7/2022
-  Time: 10:36 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <title>${title}
+    </title>
+    <jsp:include page="../blocks/meta.jsp"/>
+
 </head>
 <body>
+<jsp:include page="../blocks/header.jsp"/>
+<section class="py-1 container">
+    <h1>
+        User CRUD form
+    </h1>
+    <jsp:include page="../blocks/formBlocks/userFormBlock.jsp"/>
+
+</section>
+<br/>
+<jsp:include page="../blocks/footer.jsp"/>
 
 </body>
 </html>

@@ -16,6 +16,8 @@ public class User {
     @Size(min = 2, max = 30, message = "user name length must be within 2-30 chars")
     @Column(name = "user_name")
     private String userName;
+    @NotEmpty(message = "password cannot be empty")
+    @Size(min = 2, max = 16, message = "password length must be within 2-16 chars")
     @Column(name = "password")
     private String password;
     @Column(name = "is_active")
@@ -31,18 +33,12 @@ public class User {
     private String lastName;
     @Column(name = "address")
     private String address;
-    @Column(name = "country")
-    private String country;
-    @Column(name = "state")
-    private String state;
-    @Column(name = "zip")
-    private int zip;
 
     public User() {
 
     }
 
-    public User(String userName, String password, String roles, String email, String firstName, String lastName, String address, String country, String state, Integer zip) {
+    public User(String userName, String password, String roles, String email, String firstName, String lastName, String address) {
         this.userName = userName;
         this.password = password;
         this.roles = roles;
@@ -51,9 +47,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
-        this.country = country;
-        this.state = state;
-        this.zip = zip;
+
     }
 
     public Long getId() {
@@ -124,29 +118,6 @@ public class User {
         this.address = address;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public int getZip() {
-        return zip;
-    }
-
-    public void setZip(int zip) {
-        this.zip = zip;
-    }
 
     @Override
     public String toString() {

@@ -34,14 +34,31 @@ public class MainController {
     @GetMapping("/admin")
     public String adminPage(Model model) {
         model.addAttribute("title", "Administration page");
-        return "admin/admin";
+        return "admin/index";
     }
 
-    @GetMapping("/user")
+    @GetMapping("/account")
     public String userPage(Model model) {
         model.addAttribute("title", "Account page");
-        return "user/user";
+        return "account/user";
     }
 
+//    @PostMapping("/login")
+//    public String login() {
+//        System.out.println("ATTEMPT");
+//        if (false) {
+////            model.addAttribute("user", user);
+//            return "signin";
+//        }
+//        System.out.println("SUCCESS");
+//        // save user to bd
+//
+//        return "index";
+//    }
+//
+//    @GetMapping("/error")
+//    public String error() {
+//        return "error404";
+//    }
 
 }

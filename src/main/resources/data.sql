@@ -189,7 +189,6 @@ VALUES (9789000307975,
         8.99);
 
 
-insert into users (is_active, password, roles, user_name, email, first_name, last_name, address, country, state,
-                   zip)
-values (false, 'user@123', 'USER', 'user', 'user@mail.com', 'First', 'Last', 'Somewhere 1/1', 'USA', 'CA', 123321),
-       (false, 'admin@123', 'ADMIN', 'admin', '', '', '', '', '', '', 0);
+insert into users (is_active, password, roles, user_name, email, first_name, last_name, address)
+values (true, 'user@123', 'USER', 'user', 'user@mail.com', 'First', 'Last', 'Somewhere 1/1'),
+       (true, 'admin@123', 'ADMIN', 'admin', '', '', '', '');

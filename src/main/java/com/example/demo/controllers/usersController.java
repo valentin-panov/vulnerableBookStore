@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/admin/users")
 public class usersController {
 
     @Autowired
@@ -30,8 +30,9 @@ public class usersController {
     public String getUserById(@PathVariable("id") long id, Model model) {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
+            model.addAttribute("title", "User ID#" + user.get().getId() + " view");
             model.addAttribute("user", user.get());
-            return "admin/userCRUD";
+            return "admin/userView";
         } else {
             return "error404";
         }
@@ -45,19 +46,22 @@ public class usersController {
     }
 
     @PostMapping()
-    public String createUser(@ModelAttribute("user") @Valid User user, BindingResult bindingresult) {
+    public String createUser(@ModelAttribute("user") @Valid User user, BindingResult bindingresult, Model model) {
         if (bindingresult.hasErrors()) {
+            model.addAttribute("user", user);
             return "userForm";
         }
         // save user to bd
 
-        return "redirect:/users";
+        return "redirect:/admin/users";
     }
 
     @GetMapping("/{id}/edit")
     public String editUserById(@PathVariable("id") long id, Model model) {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
+            model.addAttribute("title", "User CRUD service");
+            model.addAttribute("method", "patch");
             model.addAttribute("user", user.get());
             return "admin/userCRUD";
         } else {
@@ -71,6 +75,6 @@ public class usersController {
             return "userForm";
         }
         // save user to bd
-        return "redirect:/users";
+        return "redirect:/admin/users";
     }
 }
