@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
@@ -25,10 +26,13 @@ public class MainController {
         return "about";
     }
 
-    @GetMapping("/signin")
-    public String signInPage(Model model) {
-        model.addAttribute("title", "Sign in");
-        return "signin";
+    @GetMapping("/perform_login")
+    public String signInPage(@RequestParam(value = "error", required = false) String error, Model model) {
+        if (error != null) {
+            model.addAttribute("error", "Invalid credentials");
+        }
+        model.addAttribute("title", "LOGGING IN");
+        return "login";
     }
 
     @GetMapping("/admin")
@@ -42,23 +46,5 @@ public class MainController {
         model.addAttribute("title", "Account page");
         return "account/user";
     }
-
-//    @PostMapping("/login")
-//    public String login() {
-//        System.out.println("ATTEMPT");
-//        if (false) {
-////            model.addAttribute("user", user);
-//            return "signin";
-//        }
-//        System.out.println("SUCCESS");
-//        // save user to bd
-//
-//        return "index";
-//    }
-//
-//    @GetMapping("/error")
-//    public String error() {
-//        return "error404";
-//    }
 
 }

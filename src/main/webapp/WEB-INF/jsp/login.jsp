@@ -46,23 +46,16 @@
 <body class="text-center">
 <main class="form-signin w-100 m-auto">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-    <form:form action="/login" method="post">
-        <input name="_csrf" type="hidden" value="150314af-1c52-4fe0-b963-06ec4802e4e9">
+    <form:form action="/perform_login" method="post">
         <div class="form-floating">
             <input type="text" class="form-control" id="username" name="username" placeholder="login" required="">
             <label for="username">Login</label>
-            <div class="invalid-feedback">
-                <form:errors path="username"/>
-            </div>
         </div>
 
         <div class="form-floating">
             <input type="password" class="form-control" id="password" name="password" placeholder="Password"
                    required="">
             <label for="password">Password</label>
-            <div class="invalid-feedback">
-                <form:errors path="password"/>
-            </div>
         </div>
 
         <div class="checkbox mb-3">
@@ -70,7 +63,10 @@
                 <input type="checkbox" value="remember-me"> Remember me
             </label>
         </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        <c:if test="${error != null}">
+            <div class="alert alert-danger" role="alert">${error}</div>
+        </c:if>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">SIGN IN</button>
         <p class="mt-5 mb-3 text-muted">© Vulnerable 2017–2022</p>
     </form:form>
 </main>

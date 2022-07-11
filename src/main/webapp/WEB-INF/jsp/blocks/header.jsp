@@ -18,17 +18,16 @@
             <%
                 if (userName == null) {
             %>
-            <a href="/signin" class="col-md-5 btn btn-outline-primary me-2">Login</a>
-            <a href="/users/new" class="col-md-5 btn btn-primary">Sign-up</a>
+            <a href="/perform_login" class="col-md-5 btn btn-outline-primary me-2">LOGIN</a>
+            <a href="/users/new" class="col-md-5 btn btn-primary">SIGN-UP</a>
             <% } %>
             <%
                 if (userName != null) {
             %>
             <a href="/account" class="col-md-5 btn btn-outline-primary me-2 text-truncate"><%=userName%>
             </a>
-            <form action="/logout" method="post" class="col-md-5">
-                <input class="btn btn-outline-primary me-2" type="submit" value="Sign Out"/>
-            </form>
+            <a href="/perform_logout" class="col-md-5 btn btn-outline-primary me-2">LOGOUT
+            </a>
             <% } %>
 
         </div>
