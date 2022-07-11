@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS books;
 CREATE TABLE books
 (
-    id       serial PRIMARY KEY,
+    id       BIGSERIAL PRIMARY KEY NOT NULL,
     isbn     NUMERIC(20, 0) unique NOT NULL,
     title    VARCHAR(250)          NOT NULL,
     author   VARCHAR(250)          NOT NULL,

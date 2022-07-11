@@ -6,8 +6,9 @@ import javax.persistence.*;
 @Table(name = "books")
 public class Book {
     @Id
-    @SequenceGenerator(name = "book_sequence", sequenceName = "book_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_sequence")
+    @SequenceGenerator(name = "books_id_seq", sequenceName = "books_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "books_id_seq")
+    @Column(name = "id", updatable = false)
     private Long id;
     @Column(name = "isbn")
     private Long isbn;
@@ -29,8 +30,8 @@ public class Book {
 
     public Book(Long isbn, String title, String author, String summary, String cover, String currency, int price) {
         this.isbn = isbn;
-        this.title = title;
         this.author = author;
+        this.title = title;
         this.summary = summary;
         this.cover = cover;
         this.currency = currency;

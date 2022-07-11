@@ -46,17 +46,18 @@ public class BooksRESTController {
         }
     }
 
-    //    @PostMapping("/tutorials")
-//    public ResponseEntity<Book> createTutorial(@RequestBody Book book) {
-//        try {
-//            Book _tutorial = bookRepository
-//                    .save(new Book(book.getTitle(), book.getDescription(), false));
-//            return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-//    @PutMapping("/tutorials/{id}")
+    //    @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(consumes = "application/x-www-form-urlencoded")
+    public ResponseEntity<Book> createBook(Book book) {
+        try {
+            Book _book = bookRepository.save(new Book(book.getIsbn(), book.getAuthor(), book.getTitle(), book.getSummary(), book.getCover(), book.getCurrency(), (int) book.getPrice()));
+            return new ResponseEntity<>(_book, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    //    @PutMapping("/tutorials/{id}")
 //    public ResponseEntity<Tutorial> updateTutorial(@PathVariable("id") long id, @RequestBody Tutorial tutorial) {
 //        Optional<Tutorial> tutorialData = bookRepository.findById(id);
 //        if (tutorialData.isPresent()) {

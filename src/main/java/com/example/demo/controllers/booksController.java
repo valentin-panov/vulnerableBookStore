@@ -5,9 +5,7 @@ import com.example.demo.repo.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -58,17 +56,35 @@ public class booksController {
         }
     }
 
-//    @PostMapping()
-//    public String createUser(@ModelAttribute("user") @Valid User user, BindingResult bindingresult, Model model) {
+    @PostMapping(consumes = "application/x-www-form-urlencoded")
+    public String createBook(Book book, Model model) {
+//    public String createBook(@ModelAttribute("book") @Valid Book book, BindingResult bindingresult, Model model) {
 //        if (bindingresult.hasErrors()) {
-//            model.addAttribute("user", user);
-//            return "userForm";
+//            model.addAttribute("book", book);
+//            return "admin/bookCRUD";
 //        }
-//        // save user to bd
-//
-//        return "redirect:/admin/users";
-//    }
-//
+        try {
+            Book _book = bookRepository.save(new Book(book.getIsbn(), book.getAuthor(), book.getTitle(), book.getSummary(), book.getCover(), book.getCurrency(), (int) book.getPrice()));
+            model.addAttribute("added", _book);
+        } catch (Exception e) {
+            model.addAttribute("errors", e);
+            model.addAttribute("book", book);
+            return "admin/bookCRUD";
+        }
+        return "redirect:/admin/books/";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteBook(@PathVariable("id") long id) {
+        try {
+            System.out.println(id);
+            bookRepository.deleteById(id);
+            return "redirect:/admin/books/";
+        } catch (Exception e) {
+            return "/error404";
+        }
+    }
+
 //
 //    @PatchMapping("/{id}")
 //    public String updateUser(@ModelAttribute("user") @Valid User user, BindingResult bindingresult) {
