@@ -15,7 +15,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api/books")
-public class BooksController {
+public class BooksRESTController {
     @Autowired
     BookRepository bookRepository;
 

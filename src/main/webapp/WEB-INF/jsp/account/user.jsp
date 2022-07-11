@@ -9,8 +9,8 @@
 <body>
 <jsp:include page="../blocks/header.jsp"/>
 <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
+    <div class="row">
+        <div class="col-lg-6 col-md-1 mx-auto">
             <h1 class="fw-light">User section</h1>
             <p class="lead text-muted">A room without books is like a body without a soul.</p>
             <p>

@@ -24,8 +24,6 @@
             <%
                 if (userName != null) {
             %>
-            <a href="/account" class="col-md-5 btn btn-outline-primary me-2 text-truncate"><%=userName%>
-            </a>
             <a href="/perform_logout" class="col-md-5 btn btn-primary me-2">LOGOUT
             </a>
             <% } %>

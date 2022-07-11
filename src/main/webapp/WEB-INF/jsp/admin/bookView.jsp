@@ -25,28 +25,26 @@
 <section class="py-1 text-center container">
     <div class="row mb-3 align-items-center">
         <div class="col"><h2>${title}</h2></div>
-        <div class="col"><a href="/admin/users/new" class="btn btn-primary btn-md px-4 w-50">NEW USER</a></div>
     </div>
     <table class="container-fluid ">
         <tr>
-            <td>id</td>
-            <td>user name</td>
-            <td>email</td>
-            <td>user roles</td>
+            <td>isbn</td>
+            <td>author</td>
+            <td>title</td>
+            <td>price</td>
             <td>actions</td>
         </tr>
-        <c:forEach items="${users}" var="user">
-            <tr>
-                <td class=" themed-grid-col">${user.id}</td>
-                <td class=" themed-grid-col">${user.userName}</td>
-                <td class=" themed-grid-col">${user.email}</td>
-                <td class=" themed-grid-col">${user.roles}</td>
-                <td class=" themed-grid-col">
-                    <a href="/admin/users/${user.id}/edit" class="btn btn-sm btn-outline-secondary">EDIT</a>
-                    <a href="/admin/users/${user.id}" class="btn btn-sm btn-outline-secondary">DELETE</a>
-                </td>
-            </tr>
-        </c:forEach>
+        <tr>
+            <td class=" themed-grid-col">${book.isbn}</td>
+            <td class=" themed-grid-col">${book.author}</td>
+            <td class=" themed-grid-col">${book.title}</td>
+            <td class=" themed-grid-col">${book.price}</td>
+            <td class=" themed-grid-col">
+                <a href="/books/${book.id}/edit" class="btn btn-sm btn-outline-secondary">EDIT</a>
+                <a href="/books/${id}" class="btn btn-sm btn-outline-secondary">DELETE</a>
+            </td>
+        </tr>
+
     </table>
 
 </section>
