@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -43,7 +44,10 @@
                 <td class=" themed-grid-col">${user.roles}</td>
                 <td class=" themed-grid-col">
                     <a href="/admin/users/${user.id}/edit" class="btn btn-sm btn-outline-secondary">EDIT</a>
-                    <a href="/admin/users/${user.id}" class="btn btn-sm btn-outline-secondary">DELETE</a>
+                    <form:form method="DELETE" id="deleteUser" name="deleteUSer" action="/admin/users/${user.id}"
+                               class="btn btn-sm">
+                        <button class="btn btn-sm btn-outline-secondary" type="submit">DELETE</button>
+                    </form:form>
                 </td>
             </tr>
         </c:forEach>

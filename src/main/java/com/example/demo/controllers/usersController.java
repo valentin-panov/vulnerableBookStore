@@ -59,7 +59,7 @@ public class usersController {
             model.addAttribute("user", user);
             return "userForm";
         }
-        return "redirect:/admin/users";
+        return "redirect:/admin/users/";
     }
 
     @GetMapping("/{id}/edit")
