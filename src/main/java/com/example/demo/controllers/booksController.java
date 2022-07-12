@@ -5,8 +5,10 @@ import com.example.demo.repo.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -77,7 +79,6 @@ public class booksController {
     @DeleteMapping("/{id}")
     public String deleteBook(@PathVariable("id") long id) {
         try {
-            System.out.println(id);
             bookRepository.deleteById(id);
             return "redirect:/admin/books/";
         } catch (Exception e) {
@@ -85,13 +86,28 @@ public class booksController {
         }
     }
 
-//
-//    @PatchMapping("/{id}")
-//    public String updateUser(@ModelAttribute("user") @Valid User user, BindingResult bindingresult) {
-//        if (bindingresult.hasErrors()) {
-//            return "userForm";
-//        }
-//        // save user to bd
-//        return "redirect:/admin/users";
-//    }
+
+    @PatchMapping(value = "/{id}", consumes = "application/x-www-form-urlencoded")
+    public String updateBook(@PathVariable("id") long id, @Valid Book book, BindingResult bindingresult, Model model) {
+        if (bindingresult.hasErrors()) {
+            model.addAttribute("book", book);
+            model.addAttribute("bindingresult", bindingresult);
+            return "admin/bookCRUD";
+        }
+        Optional<Book> db_book_op = bookRepository.findById(id);
+        if (db_book_op.isPresent()) {
+            Book db_book = db_book_op.get();
+            db_book.setIsbn(book.getIsbn());
+            db_book.setAuthor(book.getAuthor());
+            db_book.setTitle(book.getTitle());
+            db_book.setSummary(book.getSummary());
+            db_book.setCover(book.getCover());
+            db_book.setPrice(book.getPrice());
+            db_book.setCurrency(book.getCurrency());
+            bookRepository.save(db_book);
+            return "redirect:/admin/books/";
+        } else {
+            return "error404";
+        }
+    }
 }

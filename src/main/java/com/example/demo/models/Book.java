@@ -1,6 +1,9 @@
 package com.example.demo.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "books")
@@ -10,18 +13,28 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "books_id_seq")
     @Column(name = "id", updatable = false)
     private Long id;
+    @NotEmpty(message = "isbn cannot be empty")
+    @Min(value = 0L, message = "The value must be positive")
+    @Size(min = 10, max = 13, message = "isbn length must be within 10-13 chars")
     @Column(name = "isbn")
     private Long isbn;
+    @NotEmpty(message = "title cannot be empty")
     @Column(name = "title")
     private String title;
+    @NotEmpty(message = "author cannot be empty")
     @Column(name = "author")
     private String author;
+    @NotEmpty(message = "summary cannot be empty")
     @Column(name = "summary")
     private String summary;
+    @NotEmpty(message = "cover cannot be empty")
     @Column(name = "cover")
     private String cover;
+    @NotEmpty(message = "currency cannot be empty")
     @Column(name = "currency")
     private String currency;
+    @NotEmpty(message = "price cannot be empty")
+    @Min(value = 0L, message = "The value must be positive")
     @Column(name = "price")
     private float price;
 

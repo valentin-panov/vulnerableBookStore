@@ -9,8 +9,9 @@ import javax.validation.constraints.Size;
 @Table(name = "users")
 public class User {
     @Id
-    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @SequenceGenerator(name = "users_id_seq", sequenceName = "users_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_id_seq")
+    @Column(name = "id", updatable = false)
     private Long id;
     @NotEmpty(message = "user name cannot be empty")
     @Size(min = 2, max = 30, message = "user name length must be within 2-30 chars")

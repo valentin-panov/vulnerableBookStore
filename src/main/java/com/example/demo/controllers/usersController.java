@@ -45,14 +45,20 @@ public class usersController {
         return "userForm";
     }
 
-    @PostMapping()
+    @PostMapping(consumes = "application/x-www-form-urlencoded")
     public String createUser(@ModelAttribute("user") @Valid User user, BindingResult bindingresult, Model model) {
         if (bindingresult.hasErrors()) {
             model.addAttribute("user", user);
             return "userForm";
         }
-        // save user to bd
-
+        try {
+            User _user = userRepository.save(new User(user.getUserName(), user.getPassword(), user.getRoles(), user.getEmail(), user.getFirstName(), user.getLastName(), user.getAddress()));
+            model.addAttribute("added", _user);
+        } catch (Exception e) {
+            model.addAttribute("errors", e);
+            model.addAttribute("user", user);
+            return "userForm";
+        }
         return "redirect:/admin/users";
     }
 
@@ -69,12 +75,22 @@ public class usersController {
         }
     }
 
-    @PatchMapping("/{id}")
-    public String updateUser(@ModelAttribute("user") @Valid User user, BindingResult bindingresult) {
-        if (bindingresult.hasErrors()) {
-            return "userForm";
+//    @PatchMapping("/{id}")
+//    public String updateUser(@ModelAttribute("user") @Valid User user, BindingResult bindingresult) {
+//        if (bindingresult.hasErrors()) {
+//            return "userForm";
+//        }
+//        // save user to bd
+//        return "redirect:/admin/users";
+//    }
+
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable("id") long id) {
+        try {
+            userRepository.deleteById(id);
+            return "redirect:/admin/users/";
+        } catch (Exception e) {
+            return "/error404";
         }
-        // save user to bd
-        return "redirect:/admin/users";
     }
 }
