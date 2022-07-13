@@ -28,8 +28,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin/", "/admin/*").hasRole(ADMIN) // TODO depth defence
-                .antMatchers("/account/").hasAnyRole(ADMIN, USER)
+                .antMatchers("/admin/", "/admin/*").hasRole(ADMIN) // A: improper authorization ? use mvcMatcher
+                .antMatchers("/account/", "/account/*").hasAnyRole(ADMIN, USER)
                 .antMatchers("/*").permitAll()
                 .and().formLogin()
                 .loginPage("/perform_login")

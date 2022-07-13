@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -35,4 +37,18 @@ public class CatalogController {
             return "error404";
         }
     }
+
+    @GetMapping("/custom")
+    public String findBookByString(Model model, @RequestParam(required = true, defaultValue = "any") String q) {
+
+        List<Book> books = bookRepository.customFindMethod(q);
+        if (!books.isEmpty()) {
+            model.addAttribute("title", "Books contains [" + q + "]");
+            model.addAttribute("books", books);
+            return "catalog/catalog";
+        } else {
+            return "error404";
+        }
+    }
+
 }
