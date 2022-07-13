@@ -41,7 +41,6 @@ public class CatalogController {
     @GetMapping("/cs")
     public String findBookByString(Model model, @RequestParam(required = true, defaultValue = "any") String q) {
         List<Book> books = bookRepository.findCustomByString(q);
-        System.out.println(books);
         if (!books.isEmpty()) {
             model.addAttribute("title", "Books contains [" + q + "]");
             model.addAttribute("books", books);
