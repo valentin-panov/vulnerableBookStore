@@ -192,3 +192,10 @@ VALUES (9789000307975,
 insert into users (is_active, password, roles, user_name, email, first_name, last_name, address)
 values (true, 'user@123', 'USER', 'user', 'user@mail.com', 'First', 'Last', 'Somewhere 1/1'),
        (true, 'admin@123', 'ADMIN', 'admin', '', '', '', '');
+
+-- insert into orders (id, state, order_date, customer_id)
+-- values (1, 'NEW', '2022-07-01', 1);
+--
+-- INSERT INTO order_details (id, price, quantity, order_id, product_id)
+-- VALUES (1, 10, 1, 1, 2),
+--        (2, 15, 2, 1, 3);

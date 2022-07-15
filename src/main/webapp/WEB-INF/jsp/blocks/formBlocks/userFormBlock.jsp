@@ -22,7 +22,8 @@
 
         <div class="col-sm-6">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="">
+            <input type="password" class="form-control" id="password" name="password" placeholder="" required=""
+            >
             <div class="invalid-feedback">
                 Password is required.
             </div>
@@ -30,7 +31,8 @@
         <div class="col-sm-6">
             <label for="password_confirmation" class="form-label">Password confirmation</label>
             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation"
-                   placeholder="">
+                   placeholder="" required=""
+            >
             <div class="invalid-feedback">
                 Passwords must match.
             </div>
@@ -39,8 +41,9 @@
         <hr class="my-4">
 
         <div class="col-12">
-            <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
+            <label for="email" class="form-label">Email <span class="text-muted">(Required)</span></label>
             <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com"
+                   required=""
                    value="${user.email}">
             <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.

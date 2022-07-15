@@ -16,8 +16,8 @@
         BOOK CRUD FORM
     </h2>
     <hr class="mt-4">
-    <form:form method="post" id="bookForm" name="book" action="/admin/books/${book.id != null ? book.id : ''}">
-        <input type="hidden" name="_method" value="${method}">
+    <form:form method="${method != null? method : post}" id="bookForm" name="book"
+               action="/admin/books/${book.id != null ? book.id : ''}">
         <div class="row g-3">
 
             <div class="col-sm-4">

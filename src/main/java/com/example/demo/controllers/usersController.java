@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin/users")
-public class usersController {
+public class UsersController {
 
     @Autowired
     UserRepository userRepository;

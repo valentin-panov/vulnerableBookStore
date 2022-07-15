@@ -9,11 +9,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin/books")
-public class booksController {
+public class BooksController {
 
     @Autowired
     BookRepository bookRepository;
@@ -66,7 +67,7 @@ public class booksController {
 //            return "admin/bookCRUD";
 //        }
         try {
-            Book _book = bookRepository.save(new Book(book.getIsbn(), book.getAuthor(), book.getTitle(), book.getSummary(), book.getCover(), book.getCurrency(), (int) book.getPrice()));
+            Book _book = bookRepository.save(new Book(book.getIsbn(), book.getAuthor(), book.getTitle(), book.getSummary(), book.getCover(), book.getCurrency(), book.getPrice()));
             model.addAttribute("added", _book);
         } catch (Exception e) {
             model.addAttribute("errors", e);

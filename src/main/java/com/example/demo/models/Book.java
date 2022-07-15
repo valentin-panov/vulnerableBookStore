@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "books")
@@ -36,12 +37,12 @@ public class Book {
     @NotEmpty(message = "price cannot be empty")
     @Min(value = 0L, message = "The value must be positive")
     @Column(name = "price")
-    private float price;
+    private BigDecimal price;
 
     public Book() {
     }
 
-    public Book(Long isbn, String title, String author, String summary, String cover, String currency, int price) {
+    public Book(Long isbn, String title, String author, String summary, String cover, String currency, BigDecimal price) {
         this.isbn = isbn;
         this.author = author;
         this.title = title;
@@ -104,11 +105,11 @@ public class Book {
         this.currency = currency;
     }
 
-    public float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

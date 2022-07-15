@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -25,20 +26,24 @@
                                          height="225px" alt="${book.title}"/>
                                 </a>
                             </div>
-                                <%--                            fallback--%>
-                                <%--                            <svg --%>
-                                <%--                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"--%>
-                                <%--                                 preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>--%>
-                                <%--                                <rect width="100%" height="100%" fill="#55595c"></rect>--%>
-                                <%--                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>--%>
-                                <%--                            </svg>--%>
 
                             <div class="card-body">
                                 <div class="card-text mh-100 p-1 text-truncate"><c:out value="${book.summary}"/></div>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="/catalog/${book.id}" class="btn btn-sm btn-outline-secondary">View</a>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Buy</button>
+                                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                                        <a href="/catalog/${book.id}"
+                                           class="btn btn-secondary btn-sm px-4 gap-3">View</a>
+                                        <form:form name="addBook"
+                                                   method="post"
+                                                   action="/account/cart/add/"
+                                                   class="btn btn-outline-primary btn-sm p-0">
+                                            <input type="hidden" name="bookId" value="${book.id}">
+                                            <input type="hidden" name="userName"
+                                                   value="<%=request.getUserPrincipal() != null ? request.getUserPrincipal().getName() : ""%>">
+                                            <button type="submit"
+                                                    class="btn btn-outline-primary btn-sm px-4">Buy
+                                            </button>
+                                        </form:form>
                                     </div>
                                     <small class="text-muted"><c:out value="${book.price}"/></small>
                                 </div>

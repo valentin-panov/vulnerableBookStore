@@ -28,6 +28,11 @@
                         class="nav-link px-2 <%= request.getRequestURI().endsWith("bookList.jsp") ? "link-dark" : "link-secondary" %>">Books</a>
 </li>
 <% } %>
+<li class="nav-item"><a href="/account/cart/<%=request.getUserPrincipal().getName()%>"
+                        class="nav-link px-2 <%= request.getRequestURI().endsWith("cart.jsp") ? "link-dark" : "link-secondary" %>">My
+    order
+</a>
+</li>
 <li class="nav-item"><a href="/account"
                         class="nav-link px-2 <%= request.getRequestURI().endsWith("user.jsp") ? "link-dark" : "link-secondary" %>">My
     account [<%=userName%>]</a>
