@@ -1,3 +1,7 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.net.URL" %>
+<%@ page import="java.net.HttpURLConnection" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -23,9 +27,30 @@
                 <span style="font-size: small;">Press/Media: 703-697-5131</span></p>
 
         </div>
-        <h6>
-            <%= "Timestamp: " + new java.util.Date() %>
-        </h6>
+        <form:form
+                action="/external"
+                method="get">
+            <input id="url" name="url" type="hidden"
+                   value="http://jsonplaceholder.typicode.com/posts">
+            <input id="component" name="component" type="hidden"
+                   value="about">
+            <button class="btn btn-primary" type="submit">GET EXTERNAL DATA</button>
+        </form:form>
+
+        <c:if test="${error != null}">
+            <div class="alert alert-danger my-1" role="alert">${error}</div>
+        </c:if>
+        <c:if test="${data != null}">
+            <div class="alert alert-info my-1" role="alert">
+                <c:forEach items="${data}" var="post">
+                    <div class="blog-post">
+                        <h6 class="blog-post-title">Title: ${post.title}</h6>
+                        <p>Body: ${post.body}</p>
+                        <hr>
+                    </div>
+                </c:forEach>
+            </div>
+        </c:if>
     </div>
 </section>
 <br/>

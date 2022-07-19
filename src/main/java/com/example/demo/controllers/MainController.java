@@ -24,6 +24,7 @@ public class MainController {
     @GetMapping("/about")
     public String aboutPage(Model model) {
         model.addAttribute("title", "About us");
+        model.addAttribute("error", null);
         return "about";
     }
 
@@ -47,5 +48,6 @@ public class MainController {
         model.addAttribute("title", "Account page");
         return "account/user";
     }
+
 
 }
